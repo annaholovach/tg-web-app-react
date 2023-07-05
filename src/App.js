@@ -5,7 +5,7 @@ import Header from './components/header/header';
 
 
 function App() {
-  const {onToggleButton, tg} = useTelegram
+  const {onToggleButton, tg} = useTelegram()
 
   useEffect(() => {
     tg.ready()
