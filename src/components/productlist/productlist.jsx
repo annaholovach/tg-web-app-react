@@ -1,9 +1,8 @@
 import React, {useState} from 'react';
-import './productlist.css'
-import ProductItem from '../productitem/productitem';
-import { useTelegram } from '../../hooks/useTelegram';
-import {useCallback, useEffect} from 'react';
-
+import './productlist.css';
+import ProductItem from "../productitem/productitem";
+import {useTelegram} from "../../hooks/useTelegram";
+import {useCallback, useEffect} from "react";
 
 const products = [
     {id: '1', title: 'Джинсы', price: 5000, description: 'Синего цвета, прямые'},
@@ -23,8 +22,8 @@ const getTotalPrice = (items = []) => {
 }
 
 const ProductList = () => {
-    const [addedItems, setAddedItems] = useState([])
-    const {tg, queryId} = useTelegram()
+    const [addedItems, setAddedItems] = useState([]);
+    const {tg, queryId} = useTelegram();
 
     const onSendData = useCallback(() => {
         const data = {
@@ -35,7 +34,7 @@ const ProductList = () => {
         fetch('https://delirious-ambitious-peridot.glitch.me:8000/web-data', {
             method: 'POST',
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
             },
             body: JSON.stringify(data)
         })
@@ -61,14 +60,15 @@ const ProductList = () => {
         setAddedItems(newItems)
 
         if(newItems.length === 0) {
-            tg.MainButton.hide()
+            tg.MainButton.hide();
         } else {
-            tg.MainButton.show()
+            tg.MainButton.show();
             tg.MainButton.setParams({
-                text: `купить ${getTotalPrice(newItems)}`
+                text: `Купить ${getTotalPrice(newItems)}`
             })
         }
     }
+
     return (
         <div className={'list'}>
             {products.map(item => (
@@ -79,7 +79,7 @@ const ProductList = () => {
                 />
             ))}
         </div>
-    )
-}
+    );
+};
 
-export default ProductList
+export default ProductList;
