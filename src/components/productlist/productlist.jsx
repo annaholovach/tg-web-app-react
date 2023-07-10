@@ -4,6 +4,7 @@ import ProductItem from '../productitem/productitem';
 import { useTelegram } from '../../hooks/useTelegram';
 import {useCallback, useEffect} from 'react';
 
+
 const products = [
     {id: '1', title: 'Джинсы', price: 5000, description: 'Синего цвета, прямые'},
     {id: '2', title: 'Куртка', price: 12000, description: 'Зеленого цвета, теплая'},
@@ -15,7 +16,7 @@ const products = [
     {id: '8', title: 'Куртка 5', price: 12000, description: 'Зеленого цвета, теплая'},
 ]
 
-const getTotalPrice = (items) => {
+const getTotalPrice = (items = []) => {
     return items.reduce((acc, item) => {
         return acc += item.price
     }, 0)
@@ -29,7 +30,7 @@ const ProductList = () => {
         const data = {
             products: addedItems,
             totalPrice: getTotalPrice(addedItems),
-            queryId
+            queryId: queryId
         }
         fetch('https://delirious-ambitious-peridot.glitch.me:8000/web-data', {
             method: 'POST',
