@@ -30,7 +30,7 @@ const ProductList = () => {
         const data = {
             products: addedItems,
             totalPrice: getTotalPrice(addedItems),
-            queryId: queryId
+            queryId,
         }
         fetch('https://delirious-ambitious-peridot.glitch.me:8000/web-data', {
             method: 'POST',
@@ -39,7 +39,6 @@ const ProductList = () => {
             },
             body: JSON.stringify(data)
         })
-        tg.sendData(JSON.stringify(data))
     }, [addedItems])
 
     useEffect(() => {
